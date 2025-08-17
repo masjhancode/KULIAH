@@ -20,15 +20,10 @@ Program harus:
 3. Jika karyawan tetap (true), potong 10% untuk pajak, jika kontrak (false) potong 5%.
 4. Menampilkan nama karyawan, gaji kotor, pajak, dan gaji bersih.
 
-Selain itu, mahasiswa wajib menggunakan Git & GitHub untuk mengupload tugas yang suda dikerjakan:
-1. Membuat repository baru dengan nama : Tugas 1 - Variabel dan Tipe Data Dart
-2. Commit setiap perubahan besar
-3. Push ke repository GitHub.
-
 ## Ketentuan Pengumpulan Tugas di GitHub
 1. Pembuatan Repository
    - Setiap mahasiswa wajib membuat repository baru di akun GitHub masing-masing dengan nama
-   ```pemrograman-mobile-tugas-conditional-nama-nim```
+   ```pemrograman-mobile-tugas-variabel-dan-typedata```
    - Repository bersifat public agar dosen bisa melakukan pengecekan
 2. Struktur Folder & File.
    - Semua file tugas disimpan dalam folder utama dengan struktur berikut
@@ -48,4 +43,4 @@ Selain itu, mahasiswa wajib menggunakan Git & GitHub untuk mengupload tugas yang
    - Setelah selesai, push ke repository GitHub masing-masing
 4. Pengumpulan Tautan Repository
    - Mahasiswa mengumpulkan link repository GitHub melalui Virtual Class Unkhair
-     ```Contoh link : https://github.com/username/pemrograman-mobile-tugas-conditional-nama-nim```
+     ```Contoh link : https://github.com/username/pemrograman-mobile-tugas-variabel-dan-typedata```
