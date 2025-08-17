@@ -1,4 +1,4 @@
-# 📝 Soal Latihan Praktek – Conditional Statement
+# 📝 Soal Latihan Praktek Coding – Conditional Statement
 
 Buat program Dart yang meminta input sebuah angka dari pengguna, kemudian tentukan apakah angka tersebut Genap atau Ganjil
 
