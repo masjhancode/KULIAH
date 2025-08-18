@@ -1,7 +1,7 @@
-# Tugas Praktek – Variabel & Tipe Data Dart
+# Tugas Praktek – Variabel & Conditional Statement
 
 ## Judul
-**Program Sistem Penilaian Mahasiswa dengan Conditional Statement di Dart**
+**Program Sistem Penilaian Mahasiswa dengan Conditional Statement**
 
 ### Deskripsi
 
