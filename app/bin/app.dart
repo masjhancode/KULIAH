@@ -1,5 +1,15 @@
-import 'package:app/app.dart' as app;
+void main() {
+  String name = "Yasir Muin";
+  int usia = 20;
+  double berat = 20;
+  num tinggiBadan = 20.50;
+  dynamic prodi = "Informatika";
+  bool isActive = false;
 
-void main(List<String> arguments) {
-  print('Hello world: ${app.calculate()}!');
+  print("Nama : $name");
+  print("Usia : $usia");
+  print("Berat Badan : $berat");
+  print("Tinggi Badan : $tinggiBadan");
+  print("Prodi : $prodi");
+  print("Mahasiswa ini statusnya : $isActive");
 }
