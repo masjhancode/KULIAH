@@ -11,5 +11,7 @@ void main(List<String> args) {
   dskjksdjsksjd
   */
   /// dfsdhfdjfhdjfh
-  buah.forEach((buah) => print(buah));
+  for (var buah in buah) {
+    print(buah);
+  }
 }
