@@ -49,45 +49,144 @@ class ImageFileDemoApp extends StatelessWidget {
 }
 ```
 
-### 3.2 Contoh Kode Studi Kasus UI (Pratinjau Foto Bukti Pembayaran SPP dari Galeri Kamera HP)
+### 3.2 Contoh Kode Studi Upoload File di galeri dan pratinjau foto
+
+Tambahkan package
+`flutter pub add image_picker`
+
+`bash
+dependencies:
+  flutter:
+    sdk: flutter
+  image_picker: ^1.1.2
+`
 
 ```dart
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() {
   runApp(const PaymentReceiptFileApp());
 }
 
-class PaymentReceiptFileApp extends StatelessWidget {
+class PaymentReceiptFileApp extends StatefulWidget {
   const PaymentReceiptFileApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final sampleReceiptFile = File('/sdcard/Pictures/bukti_spp.jpg');
+  State<PaymentReceiptFileApp> createState() =>
+      _PaymentReceiptFileAppState();
+}
 
+class _PaymentReceiptFileAppState extends State<PaymentReceiptFileApp> {
+  File? selectedReceiptFile;
+
+  final ImagePicker picker = ImagePicker();
+
+  Future<void> pickReceiptFromGallery() async {
+    final XFile? image = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 80,
+    );
+
+    if (image != null) {
+      setState(() {
+        selectedReceiptFile = File(image.path);
+      });
+    }
+  }
+
+  Future<void> takeReceiptPhoto() async {
+    final XFile? image = await picker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 80,
+    );
+
+    if (image != null) {
+      setState(() {
+        selectedReceiptFile = File(image.path);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: const Text('Upload Bukti Transfer SPP'), backgroundColor: Colors.indigo),
+        appBar: AppBar(
+          title: const Text('Upload Bukti Transfer SPP'),
+          backgroundColor: Colors.indigo,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text('Pratinjau Foto Bukti Transfer:', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text(
+                'Pratinjau Foto Bukti Transfer:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
               const SizedBox(height: 12),
+
+              // Preview foto
               Container(
                 height: 250,
                 width: double.infinity,
-                decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                child: Image.file(
-                  sampleReceiptFile,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Center(child: Text('Foto Bukti Transfer Belum Dipilih'));
-                  },
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(12),
                 ),
+                clipBehavior: Clip.antiAlias,
+                child: selectedReceiptFile != null
+                    ? Image.file(
+                        selectedReceiptFile!,
+                        fit: BoxFit.cover,
+                      )
+                    : const Center(
+                        child: Text(
+                          'Foto Bukti Transfer Belum Dipilih',
+                        ),
+                      ),
               ),
+
+              const SizedBox(height: 20),
+
+              // Tombol pilih dari galeri
+              ElevatedButton.icon(
+                onPressed: pickReceiptFromGallery,
+                icon: const Icon(Icons.photo_library),
+                label: const Text('Pilih dari Galeri'),
+              ),
+
+              const SizedBox(height: 10),
+
+              // Tombol kamera
+              OutlinedButton.icon(
+                onPressed: takeReceiptPhoto,
+                icon: const Icon(Icons.camera_alt),
+                label: const Text('Ambil Foto'),
+              ),
+
+              const SizedBox(height: 20),
+
+              // Tombol upload
+              if (selectedReceiptFile != null)
+                ElevatedButton(
+                  onPressed: () {
+                    // TODO:
+                    // Upload selectedReceiptFile ke server/API
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: const Text('Upload Bukti Transfer'),
+                ),
             ],
           ),
         ),
