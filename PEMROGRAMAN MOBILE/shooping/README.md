@@ -1,21 +1,10 @@
 # Panduan Praktikum & Dokumentasi Arsitektur Proyek: Shooping App
 
-Dokumentasi ini disusun sebagai pedoman pembelajaran terstruktur mata kuliah **Pemrograman Perangkat Bergerak (*Mobile Programming*)**, berlandaskan pada ketentuan **Undang-Undang Republik Indonesia Nomor 12 Tahun 2012 tentang Pendidikan Tinggi**, standar penjaminan mutu **Permendikbudristek Nomor 53 Tahun 2023**, serta standar Capaian Pembelajaran Lulusan (CPL) **Asosiasi Pendidikan Tinggi Informatika dan Komputer (APTIKOM)** dan instrumen akreditasi **LAM-INFOKOM / BAN-PT**.
+Dokumentasi ini disusun sebagai pedoman pembelajaran terstruktur mata kuliah **Pemrograman Mobile**
 
 ---
 
-## 1. Ikhtisar Proyek dan Prinsip Pedagogis
-
-Aplikasi **Shooping** adalah sistem e-commerce mini berbasis mobile yang dibangun menggunakan kerangka kerja **Flutter** dan basis data lokal **SQLite** (`sqflite`). 
-
-Untuk mempermudah pemahaman mahasiswa pemula, arsitektur proyek dirancang dengan 3 pilar utama:
-1. **Satu Berkas Satu Halaman (*1 File 1 Page*)**: Seluruh logika antarmuka (*UI*), pengelolaan formulir, dan pemanggilan data pada setiap layar diletakkan dalam satu berkas terdedikasi di direktori `lib/pages/`.
-2. **State Management Asli (*Native setState*)**: Menghindari pustaka rumit pihak ketiga (*third-party*) seperti Bloc, Riverpod, atau Provider. Mahasiswa belajar langsung siklus hidup widget (*Widget Lifecycle*) melalui `StatefulWidget` dan fungsi mutasi `setState()`.
-3. **Penyimpanan Lokal Relasional (*Persistent Local Storage*)**: Menggunakan SQLite terindeks untuk mengelola entitas pengguna (*users*), katalog produk (*products*), dan item keranjang belanja (*cart_items*).
-
----
-
-## 2. Struktur Direktori Proyek
+## 1. Struktur Direktori Proyek
 
 ```text
 shooping/
@@ -44,7 +33,7 @@ shooping/
 
 ---
 
-## 3. Peta Jalan Pembelajaran Mahasiswa (*Step-by-Step Learning Path*)
+## 2. Peta Jalan Pembelajaran Mahasiswa (*Step-by-Step Learning Path*)
 
 Mahasiswa diwajibkan mengikuti dan menelaah kode program dengan urutan pembelajaran berikut:
 
@@ -64,7 +53,7 @@ flowchart TD
 
 ---
 
-## 4. Penjelasan Komprehensif Berkas Kode Sumber
+## 4. Penjelasan Komprehensif Berkas Kode Program
 
 ### 4.1 Konfigurasi Dependensi: `pubspec.yaml`
 - **Deskripsi Berkas**: Berkas manifes utama aplikasi Flutter yang mendefinisikan versi SDK, pustaka pihak ketiga, dan deklarasi aset gambar statis.
