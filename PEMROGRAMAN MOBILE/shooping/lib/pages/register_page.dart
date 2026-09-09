@@ -50,10 +50,16 @@ class _RegisterPageState extends State<RegisterPage> {
             backgroundColor: Color(0xFFE11D48),
             content: Row(
               children: [
-                Icon(Icons.warning_amber_rounded, color: Colors.white, size: 20),
+                Icon(
+                  Icons.warning_amber_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
                 SizedBox(width: 10),
                 Expanded(
-                  child: Text('Email tersebut sudah terdaftar. Gunakan email lain.'),
+                  child: Text(
+                    'Email tersebut sudah terdaftar. Gunakan email lain.',
+                  ),
                 ),
               ],
             ),
@@ -62,11 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
         return;
       }
 
-      final newUser = User(
-        name: name,
-        email: email,
-        password: password,
-      );
+      final newUser = User(name: name, email: email, password: password);
 
       await DatabaseHelper().registerUser(newUser);
 
@@ -145,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       border: Border.all(color: const Color(0xFFE2E8F0)),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.03),
+                          color: Colors.black.withValues(alpha: 0.03),
                           blurRadius: 12,
                           offset: const Offset(0, 4),
                         ),
@@ -275,7 +277,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  _obscureConfirmPassword = !_obscureConfirmPassword;
+                                  _obscureConfirmPassword =
+                                      !_obscureConfirmPassword;
                                 });
                               },
                             ),
@@ -334,7 +337,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       const Text(
                         'Sudah memiliki akun?',
-                        style: TextStyle(color: Color(0xFF64748B), fontSize: 13),
+                        style: TextStyle(
+                          color: Color(0xFF64748B),
+                          fontSize: 13,
+                        ),
                       ),
                       TextButton(
                         onPressed: () => Navigator.pop(context),
