@@ -153,4 +153,11 @@ tbody tr:hover {
     padding: 10px;
     font-size: 14px;
   }
+
+  .flash-message {
+    background-color: rgba(10, 161, 10, 0.768);
+    color: #dcdfe3;
+    border-radius: 20px;
+    text-align: center;
+  }
 }

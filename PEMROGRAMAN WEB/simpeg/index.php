@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once 'config/config.php';
 
 ?>
@@ -42,7 +42,19 @@ include_once 'config/config.php';
 
 
         <h2>Data Pegawai</h2>
+        <div>
+            <?php
+            if (isset($_SESSION['flash_message'])) {
+                $message = $_SESSION['flash_message'];
+                $messageType = $_SESSION['flash_message_type'];
 
+                echo "<div class='flash-message'>{$message}</div>";
+
+                unset($_SESSION['flash_message']);
+                unset($_SESSION['flash_message_type']);
+            }
+            ?>
+        </div>
         <div class="table-container">
 
             <table>

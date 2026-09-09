@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once 'config/config.php';
 
 $nama = $_POST['namalengkap'];
@@ -16,6 +16,9 @@ $stmt->execute([
     ':gaji' => $gaji,
     ':tanggalbergabung' => $tanggalbergabung
 ]);
+
+$_SESSION['flash_message'] = "Data pegawai berhasil disimpan.";
+$_SESSION['flash_message_type'] = "success";
 
 header("Location: index.php");
 exit;
