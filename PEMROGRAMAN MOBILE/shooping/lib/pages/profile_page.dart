@@ -19,11 +19,16 @@ class ProfilePage extends StatelessWidget {
             Text('Konfirmasi Keluar'),
           ],
         ),
-        content: const Text('Apakah Anda yakin ingin mengakhiri sesi dan keluar dari akun?'),
+        content: const Text(
+          'Apakah Anda yakin ingin mengakhiri sesi dan keluar dari akun?',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Batal', style: TextStyle(color: Color(0xFF64748B))),
+            child: const Text(
+              'Batal',
+              style: TextStyle(color: Color(0xFF64748B)),
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -50,12 +55,21 @@ class ProfilePage extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-        content: Text(message, style: const TextStyle(fontSize: 13, height: 1.4)),
+        title: Text(
+          title,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        content: Text(
+          message,
+          style: const TextStyle(fontSize: 13, height: 1.4),
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Tutup', style: TextStyle(color: Color(0xFF0F766E))),
+            child: const Text(
+              'Tutup',
+              style: TextStyle(color: Color(0xFF0F766E)),
+            ),
           ),
         ],
       ),
@@ -88,7 +102,7 @@ class ProfilePage extends StatelessWidget {
                 border: Border.all(color: const Color(0xFFE2E8F0)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.03),
+                    color: Colors.black.withValues(alpha: 0.03),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -108,7 +122,7 @@ class ProfilePage extends StatelessWidget {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF0F766E).withOpacity(0.3),
+                          color: const Color(0xFF0F766E).withValues(alpha: 0.3),
                           blurRadius: 12,
                           offset: const Offset(0, 4),
                         ),
@@ -137,11 +151,17 @@ class ProfilePage extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     email,
-                    style: const TextStyle(fontSize: 13, color: Color(0xFF64748B)),
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Color(0xFF64748B),
+                    ),
                   ),
                   const SizedBox(height: 12),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFFF0FDFA),
                       borderRadius: BorderRadius.circular(20),
@@ -150,7 +170,11 @@ class ProfilePage extends StatelessWidget {
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.verified_rounded, size: 14, color: Color(0xFF0F766E)),
+                        Icon(
+                          Icons.verified_rounded,
+                          size: 14,
+                          color: Color(0xFF0F766E),
+                        ),
                         SizedBox(width: 6),
                         Text(
                           'Mahasiswa Terverifikasi',
@@ -189,13 +213,29 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   const Divider(height: 20),
-                  _buildProfileRow(Icons.school_outlined, 'Mata Kuliah', 'Pemrograman Mobile'),
+                  _buildProfileRow(
+                    Icons.school_outlined,
+                    'Mata Kuliah',
+                    'Pemrograman Mobile',
+                  ),
                   const Divider(height: 20),
-                  _buildProfileRow(Icons.layers_outlined, 'State Management', 'setState (Lokal)'),
+                  _buildProfileRow(
+                    Icons.layers_outlined,
+                    'State Management',
+                    'setState (Lokal)',
+                  ),
                   const Divider(height: 20),
-                  _buildProfileRow(Icons.storage_rounded, 'Database Lokal', 'SQLite (sqflite)'),
+                  _buildProfileRow(
+                    Icons.storage_rounded,
+                    'Database Lokal',
+                    'SQLite (sqflite)',
+                  ),
                   const Divider(height: 20),
-                  _buildProfileRow(Icons.architecture_rounded, 'Arsitektur UI', '1 Berkas 1 Halaman'),
+                  _buildProfileRow(
+                    Icons.architecture_rounded,
+                    'Arsitektur UI',
+                    '1 Berkas 1 Halaman',
+                  ),
                 ],
               ),
             ),
@@ -212,10 +252,25 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   ListTile(
-                    leading: const Icon(Icons.help_outline_rounded, color: Color(0xFF0F766E)),
-                    title: const Text('Panduan Alur Belajar', style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w600)),
-                    subtitle: const Text('Tahapan praktikum untuk mahasiswa pemula', style: TextStyle(fontSize: 11.5)),
-                    trailing: const Icon(Icons.chevron_right_rounded, color: Color(0xFF94A3B8)),
+                    leading: const Icon(
+                      Icons.help_outline_rounded,
+                      color: Color(0xFF0F766E),
+                    ),
+                    title: const Text(
+                      'Panduan Alur Belajar',
+                      style: TextStyle(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    subtitle: const Text(
+                      'Tahapan praktikum untuk mahasiswa pemula',
+                      style: TextStyle(fontSize: 11.5),
+                    ),
+                    trailing: const Icon(
+                      Icons.chevron_right_rounded,
+                      color: Color(0xFF94A3B8),
+                    ),
                     onTap: () => _showInfoDialog(
                       context,
                       'Panduan Alur Belajar',
@@ -224,10 +279,25 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const Divider(height: 1, indent: 16, endIndent: 16),
                   ListTile(
-                    leading: const Icon(Icons.info_outline_rounded, color: Color(0xFF0F766E)),
-                    title: const Text('Tentang Shooping App', style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w600)),
-                    subtitle: const Text('Versi 1.0.0 (Material 3 Edukasi)', style: TextStyle(fontSize: 11.5)),
-                    trailing: const Icon(Icons.chevron_right_rounded, color: Color(0xFF94A3B8)),
+                    leading: const Icon(
+                      Icons.info_outline_rounded,
+                      color: Color(0xFF0F766E),
+                    ),
+                    title: const Text(
+                      'Tentang Shooping App',
+                      style: TextStyle(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    subtitle: const Text(
+                      'Versi 1.0.0 (Material 3 Edukasi)',
+                      style: TextStyle(fontSize: 11.5),
+                    ),
+                    trailing: const Icon(
+                      Icons.chevron_right_rounded,
+                      color: Color(0xFF94A3B8),
+                    ),
                     onTap: () => _showInfoDialog(
                       context,
                       'Tentang Shooping App',
@@ -250,11 +320,16 @@ class ProfilePage extends StatelessWidget {
                   foregroundColor: const Color(0xFFE11D48),
                   elevation: 0,
                   side: const BorderSide(color: Color(0xFFFECACA)),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                 ),
                 onPressed: () => _handleLogout(context),
                 icon: const Icon(Icons.logout_rounded, size: 20),
-                label: const Text('KELUAR DARI AKUN', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5)),
+                label: const Text(
+                  'KELUAR DARI AKUN',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5),
+                ),
               ),
             ),
           ],
@@ -268,11 +343,18 @@ class ProfilePage extends StatelessWidget {
       children: [
         Icon(icon, size: 19, color: const Color(0xFF0F766E)),
         const SizedBox(width: 12),
-        Text(title, style: const TextStyle(fontSize: 13, color: Color(0xFF64748B))),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 13, color: Color(0xFF64748B)),
+        ),
         const Spacer(),
         Text(
           value,
-          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+          style: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF0F172A),
+          ),
         ),
       ],
     );

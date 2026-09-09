@@ -17,4 +17,5 @@ $stmt->execute([
     ':tanggalbergabung' => $tanggalbergabung
 ]);
 
-echo "Data pegawai berhasil disimpan.";
+header("Location: index.php");
+exit;

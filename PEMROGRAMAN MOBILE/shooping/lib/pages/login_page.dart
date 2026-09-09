@@ -62,7 +62,11 @@ class _LoginPageState extends State<LoginPage> {
             backgroundColor: const Color(0xFF059669),
             content: Row(
               children: [
-                const Icon(Icons.check_circle_rounded, color: Colors.white, size: 20),
+                const Icon(
+                  Icons.check_circle_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
                 const SizedBox(width: 10),
                 Text('Selamat datang kembali, ${user.name}!'),
               ],
@@ -83,7 +87,11 @@ class _LoginPageState extends State<LoginPage> {
             backgroundColor: Color(0xFFE11D48),
             content: Row(
               children: [
-                Icon(Icons.error_outline_rounded, color: Colors.white, size: 20),
+                Icon(
+                  Icons.error_outline_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
                 SizedBox(width: 10),
                 Text('Email atau kata sandi tidak cocok.'),
               ],
@@ -132,7 +140,9 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF0F766E).withOpacity(0.35),
+                            color: const Color(
+                              0xFF0F766E,
+                            ).withValues(alpha: 0.35),
                             blurRadius: 20,
                             offset: const Offset(0, 8),
                           ),
@@ -176,7 +186,7 @@ class _LoginPageState extends State<LoginPage> {
                       border: Border.all(color: const Color(0xFFE2E8F0)),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.03),
+                          color: Colors.black.withValues(alpha: 0.03),
                           blurRadius: 14,
                           offset: const Offset(0, 4),
                         ),
@@ -301,7 +311,11 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: const Color(0xFFF0FDFA),
                     ),
                     onPressed: _fillDemoCredentials,
-                    icon: const Icon(Icons.flash_on_rounded, color: Color(0xFF0F766E), size: 18),
+                    icon: const Icon(
+                      Icons.flash_on_rounded,
+                      color: Color(0xFF0F766E),
+                      size: 18,
+                    ),
                     label: const Text(
                       'Isi Akun Demo Praktikum (1-Klik)',
                       style: TextStyle(
@@ -320,7 +334,10 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       const Text(
                         'Belum memiliki akun?',
-                        style: TextStyle(color: Color(0xFF64748B), fontSize: 13),
+                        style: TextStyle(
+                          color: Color(0xFF64748B),
+                          fontSize: 13,
+                        ),
                       ),
                       TextButton(
                         onPressed: () {

@@ -53,6 +53,7 @@ include_once 'config/config.php';
                         <th>Jabatan</th>
                         <th>Gaji</th>
                         <th>Tanggal Bergabung</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -60,21 +61,8 @@ include_once 'config/config.php';
                 <tbody>
 
                     <?php
-                    // Contoh data
-                    $pegawai = [
-                        [
-                            "nama" => "Budi Santoso",
-                            "jabatan" => "Manager",
-                            "gaji" => 7500000,
-                            "tanggal" => "2026-01-10"
-                        ],
-                        [
-                            "nama" => "Andi Saputra",
-                            "jabatan" => "Programmer",
-                            "gaji" => 6000000,
-                            "tanggal" => "2026-02-15"
-                        ]
-                    ];
+                    $stmt = $pdo->query("SELECT * FROM pegawai");
+                    $pegawai = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     $no = 1;
 
@@ -86,7 +74,8 @@ include_once 'config/config.php';
                         <td><?= $p["nama"]; ?></td>
                         <td><?= $p["jabatan"]; ?></td>
                         <td>Rp <?= number_format($p["gaji"], 0, ',', '.'); ?></td>
-                        <td><?= $p["tanggal"]; ?></td>
+                        <td><?= $p["tanggal_bergabung"]; ?></td>
+                        <td><?= $p["aktif"] == 1 ? 'Aktif' : 'Tidak Aktif'; ?></td>
                         <td>
                             <a href="#" class="btn-edit">Edit</a>
                             <a href="#" class="btn-hapus">Hapus</a>

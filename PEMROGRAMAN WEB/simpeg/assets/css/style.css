@@ -13,7 +13,7 @@ body {
 
 /* Container */
 .container {
-  max-width: 900px;
+  max-width: 200vh;
   margin: auto;
 }
 

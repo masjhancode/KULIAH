@@ -65,7 +65,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Batal', style: TextStyle(color: Color(0xFF64748B))),
+            child: const Text(
+              'Batal',
+              style: TextStyle(color: Color(0xFF64748B)),
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -81,7 +84,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   SnackBar(
                     behavior: SnackBarBehavior.floating,
                     backgroundColor: const Color(0xFF059669),
-                    content: Text('Produk "${_currentProduct.name}" berhasil dihapus.'),
+                    content: Text(
+                      'Produk "${_currentProduct.name}" berhasil dihapus.',
+                    ),
                   ),
                 );
                 Navigator.pop(context, true);
@@ -104,7 +109,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         content: Row(
           children: [
-            const Icon(Icons.check_circle_rounded, color: Colors.white, size: 20),
+            const Icon(
+              Icons.check_circle_rounded,
+              color: Colors.white,
+              size: 20,
+            ),
             const SizedBox(width: 10),
             Expanded(
               child: Text(
@@ -132,7 +141,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     }
     return 'Rp ${buffer.toString().split('').reversed.join('')}';
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -189,9 +197,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         child: SizedBox(
                           width: double.infinity,
                           height: 220,
-                          child: _currentProduct.buildImage(
-                            fit: BoxFit.cover,
-                          ),
+                          child: _currentProduct.buildImage(fit: BoxFit.cover),
                         ),
                       ),
                     ),
@@ -207,7 +213,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         border: Border.all(color: const Color(0xFFE2E8F0)),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.025),
+                            color: Colors.black.withValues(alpha: 0.025),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           ),
@@ -219,11 +225,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           Row(
                             children: [
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 4,
+                                ),
                                 decoration: BoxDecoration(
                                   color: const Color(0xFFF0FDFA),
                                   borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: const Color(0xFFCCFBF1)),
+                                  border: Border.all(
+                                    color: const Color(0xFFCCFBF1),
+                                  ),
                                 ),
                                 child: Text(
                                   _currentProduct.category.toUpperCase(),
@@ -237,25 +248,38 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                               const SizedBox(width: 8),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
                                 decoration: BoxDecoration(
-                                  color: inStock ? const Color(0xFFECFDF5) : const Color(0xFFFEF2F2),
+                                  color: inStock
+                                      ? const Color(0xFFECFDF5)
+                                      : const Color(0xFFFEF2F2),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Row(
                                   children: [
                                     Icon(
-                                      inStock ? Icons.check_circle_rounded : Icons.cancel_rounded,
+                                      inStock
+                                          ? Icons.check_circle_rounded
+                                          : Icons.cancel_rounded,
                                       size: 14,
-                                      color: inStock ? const Color(0xFF059669) : const Color(0xFFE11D48),
+                                      color: inStock
+                                          ? const Color(0xFF059669)
+                                          : const Color(0xFFE11D48),
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
-                                      inStock ? 'Stok: ${_currentProduct.stock}' : 'Stok Habis',
+                                      inStock
+                                          ? 'Stok: ${_currentProduct.stock}'
+                                          : 'Stok Habis',
                                       style: TextStyle(
                                         fontSize: 11,
                                         fontWeight: FontWeight.bold,
-                                        color: inStock ? const Color(0xFF059669) : const Color(0xFFE11D48),
+                                        color: inStock
+                                            ? const Color(0xFF059669)
+                                            : const Color(0xFFE11D48),
                                       ),
                                     ),
                                   ],
@@ -294,7 +318,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
                     // Kartu Stepper Kuantitas
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 16,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(16),
@@ -316,7 +343,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                               Text(
                                 'Atur kuantitas pesanan',
-                                style: TextStyle(fontSize: 11, color: Color(0xFF64748B)),
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Color(0xFF64748B),
+                                ),
                               ),
                             ],
                           ),
@@ -328,14 +358,19 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             child: Row(
                               children: [
                                 IconButton(
-                                  icon: const Icon(Icons.remove_rounded, size: 18),
+                                  icon: const Icon(
+                                    Icons.remove_rounded,
+                                    size: 18,
+                                  ),
                                   color: const Color(0xFF475569),
                                   onPressed: inStock && _orderQuantity > 1
                                       ? () => setState(() => _orderQuantity--)
                                       : null,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                  ),
                                   child: Text(
                                     '$_orderQuantity',
                                     style: const TextStyle(
@@ -348,7 +383,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 IconButton(
                                   icon: const Icon(Icons.add_rounded, size: 18),
                                   color: const Color(0xFF0F766E),
-                                  onPressed: inStock && _orderQuantity < _currentProduct.stock
+                                  onPressed:
+                                      inStock &&
+                                          _orderQuantity < _currentProduct.stock
                                       ? () => setState(() => _orderQuantity++)
                                       : null,
                                 ),
@@ -374,7 +411,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         children: [
                           const Row(
                             children: [
-                              Icon(Icons.description_outlined, size: 18, color: Color(0xFF0F766E)),
+                              Icon(
+                                Icons.description_outlined,
+                                size: 18,
+                                color: Color(0xFF0F766E),
+                              ),
                               SizedBox(width: 8),
                               Text(
                                 'Deskripsi Produk',
@@ -413,7 +454,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.06),
+                    color: Colors.black.withValues(alpha: 0.06),
                     blurRadius: 14,
                     offset: const Offset(0, -4),
                   ),
@@ -428,7 +469,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       children: [
                         const Text(
                           'Subtotal Pesanan:',
-                          style: TextStyle(fontSize: 11.5, color: Color(0xFF64748B)),
+                          style: TextStyle(
+                            fontSize: 11.5,
+                            color: Color(0xFF64748B),
+                          ),
                         ),
                         Text(
                           _formatCurrency(subtotal),
@@ -453,10 +497,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             ),
                           ),
                           onPressed: inStock ? _addToCart : null,
-                          icon: const Icon(Icons.add_shopping_cart_rounded, size: 18),
+                          icon: const Icon(
+                            Icons.add_shopping_cart_rounded,
+                            size: 18,
+                          ),
                           label: Text(
                             inStock ? 'MASUKKAN KERANJANG' : 'STOK HABIS',
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12.5),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.5,
+                            ),
                           ),
                         ),
                       ),

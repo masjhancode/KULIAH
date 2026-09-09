@@ -57,9 +57,11 @@ class _ProductListPageState extends State<ProductListPage> {
     final query = _searchController.text.toLowerCase();
     setState(() {
       _filteredProducts = _products.where((p) {
-        final matchesQuery = p.name.toLowerCase().contains(query) ||
+        final matchesQuery =
+            p.name.toLowerCase().contains(query) ||
             p.description.toLowerCase().contains(query);
-        final matchesCategory = _selectedCategory == 'Semua' ||
+        final matchesCategory =
+            _selectedCategory == 'Semua' ||
             p.category.toLowerCase() == _selectedCategory.toLowerCase();
         return matchesQuery && matchesCategory;
       }).toList();
@@ -69,9 +71,7 @@ class _ProductListPageState extends State<ProductListPage> {
   Future<void> _openAddProduct() async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => const ProductFormPage(),
-      ),
+      MaterialPageRoute(builder: (context) => const ProductFormPage()),
     );
 
     if (result == true) {
@@ -102,7 +102,11 @@ class _ProductListPageState extends State<ProductListPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         content: Row(
           children: [
-            const Icon(Icons.check_circle_rounded, color: Colors.white, size: 20),
+            const Icon(
+              Icons.check_circle_rounded,
+              color: Colors.white,
+              size: 20,
+            ),
             const SizedBox(width: 10),
             Expanded(
               child: Text(
@@ -133,7 +137,10 @@ class _ProductListPageState extends State<ProductListPage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Batal', style: TextStyle(color: Color(0xFF64748B))),
+            child: const Text(
+              'Batal',
+              style: TextStyle(color: Color(0xFF64748B)),
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -155,7 +162,6 @@ class _ProductListPageState extends State<ProductListPage> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     final userName = widget.currentUser?.name ?? 'Mahasiswa';
@@ -171,11 +177,19 @@ class _ProductListPageState extends State<ProductListPage> {
           children: [
             const Text(
               'Shooping App',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, letterSpacing: -0.3),
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+                letterSpacing: -0.3,
+              ),
             ),
             Text(
               'Halo, $userName 👋',
-              style: const TextStyle(fontSize: 12, color: Colors.white70, fontWeight: FontWeight.normal),
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.white70,
+                fontWeight: FontWeight.normal,
+              ),
             ),
           ],
         ),
@@ -205,7 +219,10 @@ class _ProductListPageState extends State<ProductListPage> {
               children: [
                 // Banner Promosi
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                       colors: [Color(0xFF0F766E), Color(0xFF14B8A6)],
@@ -215,7 +232,7 @@ class _ProductListPageState extends State<ProductListPage> {
                     borderRadius: BorderRadius.circular(14),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF0F766E).withOpacity(0.2),
+                        color: const Color(0xFF0F766E).withValues(alpha: 0.2),
                         blurRadius: 10,
                         offset: const Offset(0, 3),
                       ),
@@ -226,10 +243,14 @@ class _ProductListPageState extends State<ProductListPage> {
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.local_offer_rounded, color: Colors.white, size: 22),
+                        child: const Icon(
+                          Icons.local_offer_rounded,
+                          color: Colors.white,
+                          size: 22,
+                        ),
                       ),
                       const SizedBox(width: 12),
                       const Expanded(
@@ -246,7 +267,10 @@ class _ProductListPageState extends State<ProductListPage> {
                             ),
                             Text(
                               'Gunakan promo saat praktikum & nikmati gratis ongkir!',
-                              style: TextStyle(color: Colors.white70, fontSize: 11),
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 11,
+                              ),
                             ),
                           ],
                         ),
@@ -279,7 +303,10 @@ class _ProductListPageState extends State<ProductListPage> {
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
                     ),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                   ),
                 ),
 
@@ -291,7 +318,7 @@ class _ProductListPageState extends State<ProductListPage> {
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemCount: _categories.length,
-                    separatorBuilder: (_, __) => const SizedBox(width: 8),
+                    separatorBuilder: (_, _) => const SizedBox(width: 8),
                     itemBuilder: (context, idx) {
                       final cat = _categories[idx];
                       final isSelected = _selectedCategory == cat;
@@ -300,13 +327,19 @@ class _ProductListPageState extends State<ProductListPage> {
                         selected: isSelected,
                         selectedColor: const Color(0xFF0F766E),
                         labelStyle: TextStyle(
-                          color: isSelected ? Colors.white : const Color(0xFF475569),
-                          fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                          color: isSelected
+                              ? Colors.white
+                              : const Color(0xFF475569),
+                          fontWeight: isSelected
+                              ? FontWeight.bold
+                              : FontWeight.w500,
                           fontSize: 12,
                         ),
                         backgroundColor: const Color(0xFFF1F5F9),
                         side: BorderSide.none,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         onSelected: (selected) {
                           if (selected) {
                             setState(() {
@@ -330,198 +363,215 @@ class _ProductListPageState extends State<ProductListPage> {
                     child: CircularProgressIndicator(color: Color(0xFF0F766E)),
                   )
                 : _filteredProducts.isEmpty
-                    ? Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.search_off_rounded,
-                              size: 64,
-                              color: Colors.grey.shade400,
-                            ),
-                            const SizedBox(height: 14),
-                            const Text(
-                              'Produk Tidak Ditemukan',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF475569),
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            const Text(
-                              'Coba ganti kata kunci atau reset kategori pilihan',
-                              style: TextStyle(fontSize: 12, color: Color(0xFF94A3B8)),
-                            ),
-                          ],
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.search_off_rounded,
+                          size: 64,
+                          color: Colors.grey.shade400,
                         ),
-                      )
-                    : GridView.builder(
-                        padding: const EdgeInsets.all(16),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        const SizedBox(height: 14),
+                        const Text(
+                          'Produk Tidak Ditemukan',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF475569),
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        const Text(
+                          'Coba ganti kata kunci atau reset kategori pilihan',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF94A3B8),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : GridView.builder(
+                    padding: const EdgeInsets.all(16),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 0.72,
                           crossAxisSpacing: 14,
                           mainAxisSpacing: 14,
                         ),
-                        itemCount: _filteredProducts.length,
-                        itemBuilder: (context, idx) {
-                          final prod = _filteredProducts[idx];
-                          final inStock = prod.stock > 0;
+                    itemCount: _filteredProducts.length,
+                    itemBuilder: (context, idx) {
+                      final prod = _filteredProducts[idx];
+                      final inStock = prod.stock > 0;
 
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: const Color(0xFFE2E8F0)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.025),
-                                  blurRadius: 10,
-                                  offset: const Offset(0, 4),
-                                ),
-                              ],
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: const Color(0xFFE2E8F0)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.025),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
                             ),
-                            child: Material(
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(16),
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(16),
-                                onTap: () => _openProductDetail(prod),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                          ],
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(16),
+                            onTap: () => _openProductDetail(prod),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Thumbnail Kategori & Label Stok
+                                  Stack(
                                     children: [
-                                      // Thumbnail Kategori & Label Stok
-                                      Stack(
-                                        children: [
-                                          Container(
-                                            height: 100,
+                                      Container(
+                                        height: 100,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFF0FDFA),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                          child: SizedBox(
                                             width: double.infinity,
-                                            decoration: BoxDecoration(
-                                              color: const Color(0xFFF0FDFA),
-                                              borderRadius: BorderRadius.circular(12),
+                                            height: 100,
+                                            child: prod.buildImage(
+                                              fit: BoxFit.cover,
                                             ),
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(12),
-                                              child: SizedBox(
-                                                width: double.infinity,
-                                                height: 100,
-                                                child: prod.buildImage(
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                            top: 6,
-                                            right: 6,
-                                            child: Container(
-                                              padding: const EdgeInsets.symmetric(
-                                                horizontal: 7,
-                                                vertical: 3,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                color: inStock
-                                                    ? const Color(0xFFECFDF5)
-                                                    : const Color(0xFFFEF2F2),
-                                                borderRadius: BorderRadius.circular(6),
-                                                border: Border.all(
-                                                  color: inStock
-                                                      ? const Color(0xFFA7F3D0)
-                                                      : const Color(0xFFFECACA),
-                                                ),
-                                              ),
-                                              child: Text(
-                                                inStock ? '${prod.stock} unit' : 'Habis',
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: inStock
-                                                      ? const Color(0xFF059669)
-                                                      : const Color(0xFFE11D48),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      const SizedBox(height: 10),
-
-                                      // Kategori Tag
-                                      Text(
-                                        prod.category.toUpperCase(),
-                                        style: const TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF0F766E),
-                                          letterSpacing: 0.5,
-                                        ),
-                                      ),
-
-                                      const SizedBox(height: 4),
-
-                                      // Nama Produk
-                                      Expanded(
-                                        child: Text(
-                                          prod.name,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
-                                            fontSize: 13.5,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF0F172A),
-                                            height: 1.25,
                                           ),
                                         ),
                                       ),
-
-                                      const SizedBox(height: 6),
-
-                                      // Harga & Tombol Tambah ke Keranjang
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              prod.formattedPrice,
-                                              style: const TextStyle(
-                                                fontSize: 13.5,
-                                                fontWeight: FontWeight.bold,
-                                                color: Color(0xFF0F766E),
-                                              ),
-                                            ),
+                                      Positioned(
+                                        top: 6,
+                                        right: 6,
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 7,
+                                            vertical: 3,
                                           ),
-                                          Material(
+                                          decoration: BoxDecoration(
                                             color: inStock
-                                                ? const Color(0xFF0F766E)
-                                                : const Color(0xFFCBD5E1),
-                                            borderRadius: BorderRadius.circular(10),
-                                            child: InkWell(
-                                              borderRadius: BorderRadius.circular(10),
-                                              onTap: inStock ? () => _addToCart(prod) : null,
-                                              child: const Padding(
-                                                padding: EdgeInsets.all(6),
-                                                child: Icon(
-                                                  Icons.add_shopping_cart_rounded,
-                                                  color: Colors.white,
-                                                  size: 16,
-                                                ),
-                                              ),
+                                                ? const Color(0xFFECFDF5)
+                                                : const Color(0xFFFEF2F2),
+                                            borderRadius: BorderRadius.circular(
+                                              6,
+                                            ),
+                                            border: Border.all(
+                                              color: inStock
+                                                  ? const Color(0xFFA7F3D0)
+                                                  : const Color(0xFFFECACA),
                                             ),
                                           ),
-                                        ],
+                                          child: Text(
+                                            inStock
+                                                ? '${prod.stock} unit'
+                                                : 'Habis',
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.bold,
+                                              color: inStock
+                                                  ? const Color(0xFF059669)
+                                                  : const Color(0xFFE11D48),
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ),
+
+                                  const SizedBox(height: 10),
+
+                                  // Kategori Tag
+                                  Text(
+                                    prod.category.toUpperCase(),
+                                    style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF0F766E),
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 4),
+
+                                  // Nama Produk
+                                  Expanded(
+                                    child: Text(
+                                      prod.name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 13.5,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF0F172A),
+                                        height: 1.25,
+                                      ),
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 6),
+
+                                  // Harga & Tombol Tambah ke Keranjang
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          prod.formattedPrice,
+                                          style: const TextStyle(
+                                            fontSize: 13.5,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xFF0F766E),
+                                          ),
+                                        ),
+                                      ),
+                                      Material(
+                                        color: inStock
+                                            ? const Color(0xFF0F766E)
+                                            : const Color(0xFFCBD5E1),
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: InkWell(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          onTap: inStock
+                                              ? () => _addToCart(prod)
+                                              : null,
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(6),
+                                            child: Icon(
+                                              Icons.add_shopping_cart_rounded,
+                                              color: Colors.white,
+                                              size: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
           ),
         ],
       ),

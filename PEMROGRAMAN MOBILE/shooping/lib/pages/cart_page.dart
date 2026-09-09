@@ -145,21 +145,30 @@ class _CartPageState extends State<CartPage> {
                   return Container(
                     margin: const EdgeInsets.only(bottom: 10),
                     decoration: BoxDecoration(
-                      color: isSelected ? const Color(0xFFF0FDFA) : Colors.white,
+                      color: isSelected
+                          ? const Color(0xFFF0FDFA)
+                          : Colors.white,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: isSelected ? const Color(0xFF0F766E) : const Color(0xFFE2E8F0),
+                        color: isSelected
+                            ? const Color(0xFF0F766E)
+                            : const Color(0xFFE2E8F0),
                         width: isSelected ? 1.6 : 1,
                       ),
                     ),
                     child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 2),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 2,
+                      ),
                       leading: Icon(opt['icon'], color: opt['color']),
                       title: Text(
                         opt['title'],
                         style: TextStyle(
                           fontSize: 13,
-                          fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                          fontWeight: isSelected
+                              ? FontWeight.bold
+                              : FontWeight.w500,
                           color: const Color(0xFF0F172A),
                         ),
                       ),
@@ -174,7 +183,9 @@ class _CartPageState extends State<CartPage> {
                         },
                       ),
                       onTap: () {
-                        setModalState(() => _selectedPaymentMethod = opt['title']);
+                        setModalState(
+                          () => _selectedPaymentMethod = opt['title'],
+                        );
                       },
                     ),
                   );
@@ -195,7 +206,11 @@ class _CartPageState extends State<CartPage> {
                     children: [
                       const Text(
                         'Total Yang Harus Dibayar:',
-                        style: TextStyle(fontSize: 13, color: Color(0xFF64748B), fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Color(0xFF64748B),
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                       Text(
                         _formatCurrency(_totalPayment),
@@ -218,7 +233,9 @@ class _CartPageState extends State<CartPage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF0F766E),
                       foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                     ),
                     onPressed: () async {
                       Navigator.pop(ctx);
@@ -229,15 +246,23 @@ class _CartPageState extends State<CartPage> {
                         SnackBar(
                           behavior: SnackBarBehavior.floating,
                           backgroundColor: const Color(0xFF059669),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           content: Row(
                             children: [
-                              const Icon(Icons.check_circle_rounded, color: Colors.white, size: 20),
+                              const Icon(
+                                Icons.check_circle_rounded,
+                                color: Colors.white,
+                                size: 20,
+                              ),
                               const SizedBox(width: 10),
                               Expanded(
                                 child: Text(
                                   'Pembayaran berhasil via $_selectedPaymentMethod!',
-                                  style: const TextStyle(fontWeight: FontWeight.w500),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ],
@@ -245,7 +270,10 @@ class _CartPageState extends State<CartPage> {
                         ),
                       );
                     },
-                    child: const Text('BAYAR SEKARANG', style: TextStyle(fontWeight: FontWeight.bold)),
+                    child: const Text(
+                      'BAYAR SEKARANG',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],
@@ -255,7 +283,6 @@ class _CartPageState extends State<CartPage> {
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -279,231 +306,264 @@ class _CartPageState extends State<CartPage> {
               child: CircularProgressIndicator(color: Color(0xFF0F766E)),
             )
           : _cartItems.isEmpty
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(24),
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF0FDFA),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: const Color(0xFFCCFBF1)),
+                    ),
+                    child: const Icon(
+                      Icons.shopping_cart_outlined,
+                      size: 64,
+                      color: Color(0xFF0F766E),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Keranjang Belanja Kosong',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF0F172A),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  const Text(
+                    'Buka tab Katalog dan pilih barang favorit Anda',
+                    style: TextStyle(fontSize: 13, color: Color(0xFF64748B)),
+                  ),
+                ],
+              ),
+            )
+          : Column(
+              children: [
+                Expanded(
+                  child: ListView.separated(
+                    padding: const EdgeInsets.all(16),
+                    itemCount: _cartItems.length,
+                    separatorBuilder: (_, _) => const SizedBox(height: 12),
+                    itemBuilder: (context, idx) {
+                      final item = _cartItems[idx];
+                      return Container(
+                        padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFF0FDFA),
-                          shape: BoxShape.circle,
-                          border: Border.all(color: const Color(0xFFCCFBF1)),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: const Color(0xFFE2E8F0)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.02),
+                              blurRadius: 8,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
                         ),
-                        child: const Icon(
-                          Icons.shopping_cart_outlined,
-                          size: 64,
-                          color: Color(0xFF0F766E),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 54,
+                              height: 54,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF0FDFA),
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: const Color(0xFFCCFBF1),
+                                ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: SizedBox(
+                                  width: 54,
+                                  height: 54,
+                                  child: item.buildImage(fit: BoxFit.cover),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 14),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    item.name,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      color: Color(0xFF0F172A),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    item.formatCurrency(item.price),
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF0F766E),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.remove_circle_outline,
+                                    size: 22,
+                                  ),
+                                  color: const Color(0xFF64748B),
+                                  onPressed: () => _decrementQty(item),
+                                ),
+                                Text(
+                                  '${item.quantity}',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.add_circle_outline,
+                                    size: 22,
+                                  ),
+                                  color: const Color(0xFF0F766E),
+                                  onPressed: () => _incrementQty(item),
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.delete_outline_rounded,
+                                    size: 20,
+                                    color: Color(0xFFE11D48),
+                                  ),
+                                  onPressed: () => _removeItem(item),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      const Text(
-                        'Keranjang Belanja Kosong',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF0F172A),
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      const Text(
-                        'Buka tab Katalog dan pilih barang favorit Anda',
-                        style: TextStyle(fontSize: 13, color: Color(0xFF64748B)),
+                      );
+                    },
+                  ),
+                ),
+
+                // Bagian Rincian Biaya & Tombol Checkout
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: const Border(
+                      top: BorderSide(color: Color(0xFFE2E8F0)),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.04),
+                        blurRadius: 10,
+                        offset: const Offset(0, -4),
                       ),
                     ],
                   ),
-                )
-              : Column(
-                  children: [
-                    Expanded(
-                      child: ListView.separated(
-                        padding: const EdgeInsets.all(16),
-                        itemCount: _cartItems.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 12),
-                        itemBuilder: (context, idx) {
-                          final item = _cartItems[idx];
-                          return Container(
-                            padding: const EdgeInsets.all(14),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: const Color(0xFFE2E8F0)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.02),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 54,
-                                  height: 54,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFF0FDFA),
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(color: const Color(0xFFCCFBF1)),
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: SizedBox(
-                                      width: 54,
-                                      height: 54,
-                                      child: item.buildImage(
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 14),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        item.name,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                          color: Color(0xFF0F172A),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        item.formatCurrency(item.price),
-                                        style: const TextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF0F766E),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    IconButton(
-                                      icon: const Icon(Icons.remove_circle_outline, size: 22),
-                                      color: const Color(0xFF64748B),
-                                      onPressed: () => _decrementQty(item),
-                                    ),
-                                    Text(
-                                      '${item.quantity}',
-                                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                                    ),
-                                    IconButton(
-                                      icon: const Icon(Icons.add_circle_outline, size: 22),
-                                      color: const Color(0xFF0F766E),
-                                      onPressed: () => _incrementQty(item),
-                                    ),
-                                    IconButton(
-                                      icon: const Icon(Icons.delete_outline_rounded, size: 20, color: Color(0xFFE11D48)),
-                                      onPressed: () => _removeItem(item),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-
-                    // Bagian Rincian Biaya & Tombol Checkout
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: const Border(top: BorderSide(color: Color(0xFFE2E8F0))),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.04),
-                            blurRadius: 10,
-                            offset: const Offset(0, -4),
-                          ),
-                        ],
-                      ),
-                      child: SafeArea(
-                        child: Column(
+                  child: SafeArea(
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Subtotal Barang:',
-                                  style: TextStyle(fontSize: 13, color: Color(0xFF64748B)),
-                                ),
-                                Text(
-                                  _formatCurrency(_totalPayment),
-                                  style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                            const Text(
+                              'Subtotal Barang:',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Color(0xFF64748B),
+                              ),
                             ),
-                            const SizedBox(height: 6),
-                            const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Ongkos Kirim Kampus:',
-                                  style: TextStyle(fontSize: 13, color: Color(0xFF64748B)),
-                                ),
-                                Text(
-                                  'GRATIS',
-                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF059669)),
-                                ),
-                              ],
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8),
-                              child: Divider(height: 1, color: Color(0xFFF1F5F9)),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Total Tagihan:',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF0F172A),
-                                  ),
-                                ),
-                                Text(
-                                  _formatCurrency(_totalPayment),
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF0F766E),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF0F766E),
-                                  foregroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                                ),
-                                onPressed: _handleCheckout,
-                                icon: const Icon(Icons.payment_rounded, size: 20),
-                                label: const Text(
-                                  'CHECKOUT SEKARANG',
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5),
-                                ),
+                            Text(
+                              _formatCurrency(_totalPayment),
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
                         ),
-                      ),
+                        const SizedBox(height: 6),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Ongkos Kirim Kampus:',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Color(0xFF64748B),
+                              ),
+                            ),
+                            Text(
+                              'GRATIS',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF059669),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8),
+                          child: Divider(height: 1, color: Color(0xFFF1F5F9)),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Total Tagihan:',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF0F172A),
+                              ),
+                            ),
+                            Text(
+                              _formatCurrency(_totalPayment),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF0F766E),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF0F766E),
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                            ),
+                            onPressed: _handleCheckout,
+                            icon: const Icon(Icons.payment_rounded, size: 20),
+                            label: const Text(
+                              'CHECKOUT SEKARANG',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
+              ],
+            ),
     );
   }
 }
